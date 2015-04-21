@@ -11,7 +11,8 @@
 #define LOGGER_DIRECTORY [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"logger"]
 #define LOGGER_APP [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"]
 #define LOGGER_BUNDLE [[NSBundle mainBundle] bundleIdentifier]
-#define LOGGER_DEVICE_NAME [UIDevice currentDevice].name
+//#define LOGGER_DEVICE_NAME [UIDevice currentDevice].name
+#define LOGGER_DEVICE_NAME @"iPhone 6"
 #define LOGGER_LANGUAGE [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:[[NSLocale currentLocale] localeIdentifier]]
 #define LOGGER_DEVICE_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 #define LOGGER_APP_FORMATTED [[LOGGER_APP stringByReplacingOccurrencesOfString:@" " withString:@"-"] lowercaseString]
@@ -44,8 +45,8 @@
     [appendContents appendString:[self logPrint]];
     [appendContents appendString:[NSString stringWithFormat:@"\n\n****************************** %@ ******************************\n" ,[self formatDate]]];
     
-    NSAssert(title == nil, @"Event title cannot be nil");
-    NSAssert(title.length < 3, @"Event title needs to be longer that 2 characters");
+    NSAssert(title != nil, @"Event title cannot be nill");
+    NSAssert(title.length > 2, @"Event title needs to be longer that 2 characters");
 
     [appendContents appendString:[NSString stringWithFormat:@"\nEVENT: \"%@\"\nPROPERTIES ¬ \n" ,title]];
     
