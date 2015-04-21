@@ -11,8 +11,7 @@
 #define LOGGER_DIRECTORY [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"logger"]
 #define LOGGER_APP [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"]
 #define LOGGER_BUNDLE [[NSBundle mainBundle] bundleIdentifier]
-//#define LOGGER_DEVICE_NAME [UIDevice currentDevice].name
-#define LOGGER_DEVICE_NAME @"iPhone 6"
+#define LOGGER_DEVICE_NAME [UIDevice currentDevice].name
 #define LOGGER_LANGUAGE [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:[[NSLocale currentLocale] localeIdentifier]]
 #define LOGGER_DEVICE_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 #define LOGGER_APP_FORMATTED [[LOGGER_APP stringByReplacingOccurrencesOfString:@" " withString:@"-"] lowercaseString]
