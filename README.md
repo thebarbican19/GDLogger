@@ -18,7 +18,7 @@ Events are what are created every time you create a new item in NSLogger. They c
 
 Creating an event can be done by calling the following method ¬ 
 
-<code>[logger log:@"Event Title" properties:[NSDictionary dictionaryWithObjectsAndKeys:@"value", @"key", @"installed", [NSNumber numberWithBool:true]];</code>
+<code>[logger log:@"Event Title" properties:[NSDictionary dictionaryWithObjectsAndKeys:@"value", @"key", [NSNumber numberWithBool:true] ,@"installed"];</code>
 <p><strong>NOTE</strong> title cannot be empty or NULL
 
 <h3>Print</h3>
