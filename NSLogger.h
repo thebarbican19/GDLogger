@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NSLogger : NSObject
+@interface NSLogger : NSObject {
+}
 
--(void)log:(NSString *)title properties:(NSDictionary *)properties;
+-(void)log:(NSString *)title properties:(NSDictionary *)properties error:(BOOL)error;
 
 -(NSURL *)logDirectory;
 -(NSString *)logPrint;

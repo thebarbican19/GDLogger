@@ -16,7 +16,7 @@
 #define LOGGER_DEVICE_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 #define LOGGER_APP_FORMATTED [[LOGGER_APP stringByReplacingOccurrencesOfString:@" " withString:@"-"] lowercaseString]
 #define LOGGER_FILENAME [NSString stringWithFormat:@"%@-logger.txt" ,LOGGER_APP_FORMATTED]
-#define LOGGER_VERSION 1.01
+#define LOGGER_VERSION 1.1
 #define LOGGER_HEADER [NSString stringWithFormat:@"Created with NorthernSpark Logger (Version %.1f)\nLog Created: %@\nApp Name: %@\nApp Bundle Identifyer: %@\nDevice: %@ (iOS %.1f)\nLocalization: %@\n\n" ,LOGGER_VERSION, [self formatDate], LOGGER_APP, LOGGER_BUNDLE, LOGGER_DEVICE_NAME, LOGGER_DEVICE_VERSION, LOGGER_LANGUAGE]
 
 @implementation NSLogger
@@ -30,7 +30,7 @@
     
 }
 
--(void)log:(NSString *)title properties:(NSDictionary *)properties {
+-(void)log:(NSString *)title properties:(NSDictionary *)properties error:(BOOL)error {
     NSMutableString *appendContents = [[NSMutableString alloc] init];
     if (![[NSFileManager defaultManager] fileExistsAtPath:LOGGER_DIRECTORY]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:LOGGER_DIRECTORY withIntermediateDirectories:false attributes:nil error:nil];
@@ -47,9 +47,10 @@
     NSAssert(title != nil, @"Event title cannot be nill");
     NSAssert(title.length > 2, @"Event title needs to be longer that 2 characters");
 
-    [appendContents appendString:[NSString stringWithFormat:@"\nEVENT: \"%@\"\nPROPERTIES ¬ \n" ,title]];
+    [appendContents appendString:[NSString stringWithFormat:@"\nEVENT: \"%@\"\nERROR: %@\nPROPERTIES ¬ \n" ,error?@"TRUE":@"FALSE", title]];
     
     for (int i = 0; i < [[properties allKeys] count]; i++) {
+        NSAssert([properties objectForKey:[[properties allKeys] objectAtIndex:i]] != [NSNull null], @"Event property cannot be null");
         [appendContents appendString:[NSString stringWithFormat:@"%@: \"%@\"\n" ,[[properties allKeys] objectAtIndex:i], [properties objectForKey:[[properties allKeys] objectAtIndex:i]]]];
 
     }
