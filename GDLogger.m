@@ -1,6 +1,6 @@
 //
-//  NSLogger.m
-//  Video Downloader
+//  GDLogger.m
+//  Grado Logger https://gradoapp.com
 //
 //  Created by Joe Barbour on 21/04/2015.
 //  Copyright (c) 2015 NorthernSpark. All rights reserved.
@@ -98,14 +98,17 @@
 -(NSURL *)logDirectory {
     return [NSURL fileURLWithPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename]];
     
-}`
+}
 
 -(NSArray *)logFiles:(BOOL)directory {
-    for (NSString *files in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:LOGGER_DIRECTORY error:nil] {
-        if (directory) return [NSURL fileURLWithPath:[[NSFileManager defaultManager] contentsAtPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:files]]];
-        else return files;
+    NSMutableArray *output = [[NSMutableArray alloc] init];
+    for (NSString *files in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:LOGGER_DIRECTORY error:nil]) {
+        if (directory) [output addObject:[NSURL URLWithString:[LOGGER_DIRECTORY stringByAppendingPathComponent:files]]];
+        else [output addObject:files];
             
     }
+                        
+    return output;
     
 }
 

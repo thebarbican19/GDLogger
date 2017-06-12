@@ -1,6 +1,6 @@
 //
-//  NSLogger.h
-//  Video Downloader
+//  GDLogger.h
+//  Grado Logger https://gradoapp.com
 //
 //  Created by Joe Barbour on 21/04/2015.
 //  Copyright (c) 2015 NorthernSpark. All rights reserved.
