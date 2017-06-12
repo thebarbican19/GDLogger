@@ -14,7 +14,7 @@
 -(void)log:(NSString *)title properties:(NSDictionary *)properties error:(BOOL)error;
 
 -(NSURL *)logDirectory;
--(NSArray *)logFiles;
+-(NSArray *)logFiles:(BOOL)directory;
 -(NSString *)logPrint;
 -(NSData *)logData;
 -(void)logDestory;

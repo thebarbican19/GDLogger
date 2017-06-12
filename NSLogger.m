@@ -78,11 +78,6 @@
     
 }
 
--(NSURL *)logDirectory {
-    return [NSURL fileURLWithPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename]];
-    
-}
-
 -(NSString *)logPrint {
     if ([[NSString stringWithContentsOfFile:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename] encoding:NSUTF8StringEncoding error:NULL] length] != 0)
         return [NSString stringWithContentsOfFile:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename] encoding:NSUTF8StringEncoding error:NULL];
@@ -100,8 +95,17 @@
     
 }
 
--(NSArray *)logFiles {
-    return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:LOGGER_DIRECTORY error:nil];
+-(NSURL *)logDirectory {
+    return [NSURL fileURLWithPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename]];
+    
+}`
+
+-(NSArray *)logFiles:(BOOL)directory {
+    for (NSString *files in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:LOGGER_DIRECTORY error:nil] {
+        if (directory) return [NSURL fileURLWithPath:[[NSFileManager defaultManager] contentsAtPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:files]]];
+        else return files;
+            
+    }
     
 }
 

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "NSLogger"
-  s.version      = "0.0.1"
+  s.version      = "1.1"
   s.summary      = "NSLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally"
 
   # NSLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally
@@ -25,9 +25,7 @@ Pod::Spec.new do |s|
   #	  * Export as txt or data
   
   s.description  = "NSLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally in mutilple, mutable txt files."
-  s.homepage     = "http://gradoapp.com"
-  # s.screenshots  = ""
-
+  s.homepage     = "https://github.com/northernspark/NSLogger"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -54,9 +52,7 @@ Pod::Spec.new do |s|
   # SOFTWARE.
   #
 
-  s.license      = "MIT (example)"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
-
+  s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -70,8 +66,7 @@ Pod::Spec.new do |s|
 
   s.author             = { "Joe Barbour" => "joe@gradoapp.com" }
   # Or just: s.author    = "Joe Barbour"
-  # s.authors            = { "Joe Barbour" => "joe@gradoapp.com" }
-  # s.social_media_url   = "http://twitter.com/@thebarbican19"
+  s.social_media_url   = "http://twitter.com/@thebarbican19"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -95,7 +90,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/northernspark/NSLogger.git", :tag => "#{s.version}" }
+  s.source       = "https://github.com/northernspark/NSLogger.git"
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
