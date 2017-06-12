@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 NorthernSpark. All rights reserved.
 //
 
-#import "NSLogger.h"
+#import "GDLogger.h"
 
 #define LOGGER_DIRECTORY [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"logger"]
 #define LOGGER_APP [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"]
@@ -19,7 +19,7 @@
 #define LOGGER_VERSION 1.1
 #define LOGGER_HEADER [NSString stringWithFormat:@"\n\nCreated with NorthernSpark Logger (Version %.1f)\nLog Created: %@\nApp Name: %@\nApp Bundle Identifyer: %@\nDevice: %@ (iOS %.1f)\nLocalization: %@\n" ,LOGGER_VERSION, [self formatDate], LOGGER_APP, LOGGER_BUNDLE, LOGGER_DEVICE_NAME, LOGGER_DEVICE_VERSION, LOGGER_LANGUAGE]
 
-@implementation NSLogger
+@implementation GDLogger
 
 -(NSString *)formatDate {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

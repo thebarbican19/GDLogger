@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NSLogger : NSObject
+@interface GDLogger : NSObject
 
 -(void)log:(NSString *)title properties:(NSDictionary *)properties error:(BOOL)error;
 

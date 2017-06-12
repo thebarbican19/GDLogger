@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint NSLogger.podspec' to ensure this is a
+#  Be sure to run `pod spec lint GDLogger.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,17 +15,17 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "NSLogger"
+  s.name         = "GDLogger"
   s.version      = "1.1"
-  s.summary      = "NSLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally"
+  s.summary      = "GDLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally"
 
-  # NSLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally
+  # GDLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally
   #   * Create, append and remove local log files
   #   * Track in-app events
   #	  * Export as txt or data
   
-  s.description  = "NSLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally in mutilple, mutable txt files."
-  s.homepage     = "https://github.com/northernspark/NSLogger"
+  s.description  = "GDLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally in mutilple, mutable txt files."
+  s.homepage     = "https://github.com/northernspark/GDLogger"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = "https://github.com/northernspark/NSLogger.git"
+  s.source       = "https://github.com/northernspark/GDLogger.git"
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
