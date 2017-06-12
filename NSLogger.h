@@ -9,15 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NSLogger : NSObject {
-}
+@interface NSLogger : NSObject
 
 -(void)log:(NSString *)title properties:(NSDictionary *)properties error:(BOOL)error;
 
 -(NSURL *)logDirectory;
+-(NSArray *)logFiles;
 -(NSString *)logPrint;
 -(NSData *)logData;
+-(void)logDestory;
 
 @property (nonatomic) BOOL degbugger;
+@property (nonatomic) NSString *filename;
 
 @end

@@ -17,7 +17,7 @@
 #define LOGGER_APP_FORMATTED [[LOGGER_APP stringByReplacingOccurrencesOfString:@" " withString:@"-"] lowercaseString]
 #define LOGGER_FILENAME [NSString stringWithFormat:@"%@-logger.txt" ,LOGGER_APP_FORMATTED]
 #define LOGGER_VERSION 1.1
-#define LOGGER_HEADER [NSString stringWithFormat:@"Created with NorthernSpark Logger (Version %.1f)\nLog Created: %@\nApp Name: %@\nApp Bundle Identifyer: %@\nDevice: %@ (iOS %.1f)\nLocalization: %@\n\n" ,LOGGER_VERSION, [self formatDate], LOGGER_APP, LOGGER_BUNDLE, LOGGER_DEVICE_NAME, LOGGER_DEVICE_VERSION, LOGGER_LANGUAGE]
+#define LOGGER_HEADER [NSString stringWithFormat:@"\n\nCreated with NorthernSpark Logger (Version %.1f)\nLog Created: %@\nApp Name: %@\nApp Bundle Identifyer: %@\nDevice: %@ (iOS %.1f)\nLocalization: %@\n" ,LOGGER_VERSION, [self formatDate], LOGGER_APP, LOGGER_BUNDLE, LOGGER_DEVICE_NAME, LOGGER_DEVICE_VERSION, LOGGER_LANGUAGE]
 
 @implementation NSLogger
 
@@ -31,27 +31,36 @@
 }
 
 -(void)log:(NSString *)title properties:(NSDictionary *)properties error:(BOOL)error {
+    if (!self.filename) self.filename = LOGGER_FILENAME;
+    else self.filename = [NSString stringWithFormat:@"%@-%@.txt" ,LOGGER_APP_FORMATTED, self.filename];
+    
     NSMutableString *appendContents = [[NSMutableString alloc] init];
     if (![[NSFileManager defaultManager] fileExistsAtPath:LOGGER_DIRECTORY]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:LOGGER_DIRECTORY withIntermediateDirectories:false attributes:nil error:nil];
         
         [appendContents appendString:LOGGER_HEADER];
         
-        if (self.degbugger) NSLog(@"NSLogger file created: %@" ,LOGGER_FILENAME);
+        if (self.degbugger) NSLog(@"NSLogger file created: %@" ,self.filename);
         
     }
     
     [appendContents appendString:[self logPrint]];
-    [appendContents appendString:[NSString stringWithFormat:@"\n\n****************************** %@ ******************************\n" ,[self formatDate]]];
+    [appendContents appendString:[NSString stringWithFormat:@"\n****************************** %@ ******************************\n" ,[self formatDate]]];
     
     NSAssert(title != nil, @"Event title cannot be nill");
     NSAssert(title.length > 2, @"Event title needs to be longer that 2 characters");
 
-    [appendContents appendString:[NSString stringWithFormat:@"\nEVENT: \"%@\"\nERROR: %@\nPROPERTIES ¬ \n" ,error?@"TRUE":@"FALSE", title]];
+    [appendContents appendString:[NSString stringWithFormat:@"\nEVENT: \"%@\"\nERROR: %@\nPROPERTIES ¬ " ,title ,error?@"TRUE":@"FALSE"]];
     
     for (int i = 0; i < [[properties allKeys] count]; i++) {
-        NSAssert([properties objectForKey:[[properties allKeys] objectAtIndex:i]] != [NSNull null], @"Event property cannot be null");
-        [appendContents appendString:[NSString stringWithFormat:@"%@: \"%@\"\n" ,[[properties allKeys] objectAtIndex:i], [properties objectForKey:[[properties allKeys] objectAtIndex:i]]]];
+        if ([properties objectForKey:[[properties allKeys] objectAtIndex:i]] != [NSNull null]) {
+            [appendContents appendString:[NSString stringWithFormat:@"%@: \"%@\"\n" ,[[properties allKeys] objectAtIndex:i], [properties objectForKey:[[properties allKeys] objectAtIndex:i]]]];
+            
+        }
+        else {
+            [appendContents appendString:[NSString stringWithFormat:@"%@: \"%@\"\n" ,[[properties allKeys] objectAtIndex:i], @"null"]];
+
+        }
 
     }
     
@@ -66,23 +75,33 @@
         if (self.degbugger) NSLog(@"NSLogger event \"%@\" added" ,title);
         
     }
-
+    
 }
 
 -(NSURL *)logDirectory {
-    return [NSURL fileURLWithPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:LOGGER_FILENAME]];
+    return [NSURL fileURLWithPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename]];
     
 }
 
 -(NSString *)logPrint {
-    if ([[NSString stringWithContentsOfFile:[LOGGER_DIRECTORY stringByAppendingPathComponent:LOGGER_FILENAME] encoding:NSUTF8StringEncoding error:NULL] length] != 0)
-        return [NSString stringWithContentsOfFile:[LOGGER_DIRECTORY stringByAppendingPathComponent:LOGGER_FILENAME] encoding:NSUTF8StringEncoding error:NULL];
+    if ([[NSString stringWithContentsOfFile:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename] encoding:NSUTF8StringEncoding error:NULL] length] != 0)
+        return [NSString stringWithContentsOfFile:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename] encoding:NSUTF8StringEncoding error:NULL];
     else return @"";
     
 }
 
+-(void)logDestory {
+    [[NSFileManager defaultManager] removeItemAtPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename] error:nil];
+
+}
+
 -(NSData *)logData {
-    return [[NSFileManager defaultManager] contentsAtPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:LOGGER_FILENAME]];
+    return [[NSFileManager defaultManager] contentsAtPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename]];
+    
+}
+
+-(NSArray *)logFiles {
+    return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:LOGGER_DIRECTORY error:nil];
     
 }
 
