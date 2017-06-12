@@ -1,19 +1,19 @@
-# NSLogger
-<strong>NSLogger (NorthernSparkLogger)</strong> is a lightweight class for iOS versions 3.0 and above. It allows for quick, strightforward creation, and appending of formatted, multiple localized log files in your app. 
+# GDLogger
+<strong>GDLogger</strong> is a lightweight class logging class for iOS versions 3.0 and above, build for <a href="http://gradoapp.com">Grado</a>. It allows for quick, strightforward creation, and appending of formatted, multiple localized log files in your app. 
 
 <h3>Setup</h3>
-We now support CocoaPod's <code>pod 'NSLogger'</code><p>
+We now support CocoaPod's <code>pod 'GDLogger'</code><p>
 
-Add <code>#import "NSLogger.h"</code>
+Add <code>#import "GDLogger.h"</code>
 <br/>
-In your .m file add <code>NSLogger *logger = [[NSLogger alloc] init];</code>
+In your .m file add <code>GDLogger *logger = [[GDLogger alloc] init];</code>
 
 <h3>Debugging</h3>
 to enable console debugging simply set <code>logger.degbugger = true;</code><p>
 <p>
 	
 <h3>Mutiple Logs</h3>
-We recently updated <strong>NSLogger</strong> to support multiple log files. By default there will be only one log file saved locally. This is created when you log your first event. To create a new log file simply set the filename. Anything from now on will be saved into this new log. 
+We recently updated <strong>GDLogger</strong> to support multiple log files. By default there will be only one log file saved locally. This is created when you log your first event. To create a new log file simply set the filename. Anything from now on will be saved into this new log. 
 <p>
 <code>logger.filename = @"my-new-log";</code>
 <p>
@@ -21,7 +21,7 @@ We recently updated <strong>NSLogger</strong> to support multiple log files. By 
 <p>
 
 <h3>"Events"</h3>
-Events are what are created every time you create a new item in NSLogger. They contain 2 objects, a "title" and "properties"<p>
+Events are what are created every time you create a new item in GDLogger. They contain 2 objects, a "title" and "properties"<p>
 <stong>title</strong>(NSString<br/>
 <strong>properties</strong>(NSDictionary)<p>
 <code>[logger log:@"Event Title" properties:@{@"key":@"value", @"installed":[NSNumber numberWithBool:true]}];</code>
