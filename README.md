@@ -17,8 +17,8 @@ We recently updated <strong>GDLogger</strong> to support multiple log files. By 
 <p>
 <code>logger.filename = @"my-new-log";</code>
 <p>
-<strong>#NOTE</strong> To revert back to the default log file set <code>logger.filename = nil;</code></br>
-<strong>#NOTE</strong> Do not include the file type when setting <code>logger.filename</code></br>
+<strong>NOTE</strong> To revert back to the default log file set <code>logger.filename = nil;</code></br>
+<strong>NOTE</strong> Do not include the file type when setting <code>logger.filename</code></br>
 
 <p>
 
@@ -32,7 +32,7 @@ Events are what are created every time you create a new item in GDLogger. They c
 To print out the entire log file as a <strong>NSString</strong> use <code>logger.logPrint</code><p>
 <p>
 Alternatively, you can get the file content as <strong>NSData</strong> <code>logger.logData</code><p>
-<strong>#NOTE</strong> this will print out the default log file unless <code>logger.filename</code> has been set
+<strong>NOTE</strong> this will print out the default log file unless <code>logger.filename</code> has been set
 <p>	
 	
 <h3>Files</h3>

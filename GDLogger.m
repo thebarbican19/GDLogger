@@ -17,7 +17,7 @@
 #define LOGGER_APP_FORMATTED [[LOGGER_APP stringByReplacingOccurrencesOfString:@" " withString:@"-"] lowercaseString]
 #define LOGGER_FILENAME [NSString stringWithFormat:@"%@-logger.txt" ,LOGGER_APP_FORMATTED]
 #define LOGGER_VERSION 1.1
-#define LOGGER_HEADER [NSString stringWithFormat:@"\n\nCreated with NorthernSpark Logger (Version %.1f)\nLog Created: %@\nApp Name: %@\nApp Bundle Identifyer: %@\nDevice: %@ (iOS %.1f)\nLocalization: %@\n" ,LOGGER_VERSION, [self formatDate], LOGGER_APP, LOGGER_BUNDLE, LOGGER_DEVICE_NAME, LOGGER_DEVICE_VERSION, LOGGER_LANGUAGE]
+#define LOGGER_HEADER [NSString stringWithFormat:@"\n\nCreated with GDLogger (created for https://gradoapp.com)\nLog Created: %@\nApp Name: %@\nApp Bundle Identifyer: %@\nDevice: %@ (iOS %.1f)\nLocalization: %@\n" ,LOGGER_VERSION, [self formatDate], LOGGER_APP, LOGGER_BUNDLE, LOGGER_DEVICE_NAME, LOGGER_DEVICE_VERSION, LOGGER_LANGUAGE]
 
 @implementation GDLogger
 
