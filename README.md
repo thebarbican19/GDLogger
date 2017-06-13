@@ -4,7 +4,7 @@
 <h3>Setup</h3>
 We now support CocoaPod's <code>pod 'GDLogger'</code><p>
 
-Add <code>#import "GDLogger.h"</code>
+Add <code>#import "GDLogger/GDLogger.h"</code>
 <br/>
 In your .m file add <code>GDLogger *logger = [[GDLogger alloc] init];</code>
 
@@ -43,8 +43,8 @@ You can get the active most recent file by calling <code>logger.logPrint</code>
 	
 Or, you can get an array of <strong>all</strong> files by calling
 
-<code>[self.logger logFiles:true]</code> (This will return the all the files with their full directories as an NSURL)<br/>
-<code>[self.logger logFiles:false]</code> (This will return the all the files with just their respective file names as an NSString)
+<code>[self.logger logFiles:true]</code> (This will return the all the files with their full directories as <strong>NSURL</strong>)<br/>
+<code>[self.logger logFiles:false]</code> (This will return the all the files with just their respective file names as <strong>NSString</strong>)
 <p>
 	
 <h3>Remove/Destory</h3>
