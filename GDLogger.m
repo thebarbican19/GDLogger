@@ -13,11 +13,11 @@
 #define LOGGER_BUNDLE [[NSBundle mainBundle] bundleIdentifier]
 #define LOGGER_DEVICE_NAME [UIDevice currentDevice].name
 #define LOGGER_LANGUAGE [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:[[NSLocale currentLocale] localeIdentifier]]
-#define LOGGER_DEVICE_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+#define LOGGER_DEVICE_VERSION [[UIDevice currentDevice] systemVersion]
 #define LOGGER_APP_FORMATTED [[LOGGER_APP stringByReplacingOccurrencesOfString:@" " withString:@"-"] lowercaseString]
 #define LOGGER_FILENAME [NSString stringWithFormat:@"%@-logger.txt" ,LOGGER_APP_FORMATTED]
 #define LOGGER_VERSION 1.1
-#define LOGGER_HEADER [NSString stringWithFormat:@"\n\nCreated with GDLogger (created for https://gradoapp.com)\nLog Created: %@\nApp Name: %@\nApp Bundle Identifyer: %@\nDevice: %@ (iOS %.1f)\nLocalization: %@\n" ,LOGGER_VERSION, [self formatDate], LOGGER_APP, LOGGER_BUNDLE, LOGGER_DEVICE_NAME, LOGGER_DEVICE_VERSION, LOGGER_LANGUAGE]
+#define LOGGER_HEADER [NSString stringWithFormat:@"\n\nCreated with GDLogger (created for https://gradoapp.com)\nLog Created: %@\nApp Name: %@\nApp Bundle Identifyer: %@\nDevice: %@ (iOS %@)\nLocalization: %@\n", [self formatDate], LOGGER_APP, LOGGER_BUNDLE, LOGGER_DEVICE_NAME, LOGGER_DEVICE_VERSION, LOGGER_LANGUAGE]
 
 @implementation GDLogger
 
@@ -34,6 +34,8 @@
     if (!self.filename) self.filename = LOGGER_FILENAME;
     else self.filename = [NSString stringWithFormat:@"%@-%@.txt" ,LOGGER_APP_FORMATTED, self.filename];
     
+    
+    
     NSMutableString *appendContents = [[NSMutableString alloc] init];
     if (![[NSFileManager defaultManager] fileExistsAtPath:LOGGER_DIRECTORY]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:LOGGER_DIRECTORY withIntermediateDirectories:false attributes:nil error:nil];
@@ -49,7 +51,7 @@
     
     NSAssert(title != nil, @"Event title cannot be nill");
     NSAssert(title.length > 2, @"Event title needs to be longer that 2 characters");
-
+    
     [appendContents appendString:[NSString stringWithFormat:@"\nEVENT: \"%@\"\nERROR: %@\nPROPERTIES ¬ " ,title ,error?@"TRUE":@"FALSE"]];
     
     if (properties != nil) {
@@ -60,19 +62,19 @@
             }
             else {
                 [appendContents appendString:[NSString stringWithFormat:@"%@: \"%@\"\n" ,[[properties allKeys] objectAtIndex:i], @"null"]];
-
+                
             }
-
+            
         }
-    
+        
     }
-
+    
     [appendContents appendString:@"\n"];
-
+    
     NSError *writingError;
     if (![appendContents writeToURL:[self logDirectory] atomically:true encoding:NSUTF8StringEncoding error:&writingError]) {
         if (self.degbugger) NSLog(@"NSLogger was not updated due to error: %@" ,writingError);
-
+        
     }
     else {
         if (self.degbugger) NSLog(@"NSLogger event \"%@\" added" ,title);
@@ -90,7 +92,7 @@
 
 -(void)logDestory {
     [[NSFileManager defaultManager] removeItemAtPath:[LOGGER_DIRECTORY stringByAppendingPathComponent:self.filename] error:nil];
-
+    
 }
 
 -(NSData *)logData {
@@ -108,9 +110,9 @@
     for (NSString *files in [[NSFileManager defaultManager] contentsOfDirectoryAtPath:LOGGER_DIRECTORY error:nil]) {
         if (directory) [output addObject:[NSURL URLWithString:[LOGGER_DIRECTORY stringByAppendingPathComponent:files]]];
         else [output addObject:files];
-            
+        
     }
-                        
+    
     return output;
     
 }
