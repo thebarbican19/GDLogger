@@ -52,18 +52,21 @@
 
     [appendContents appendString:[NSString stringWithFormat:@"\nEVENT: \"%@\"\nERROR: %@\nPROPERTIES ¬ " ,title ,error?@"TRUE":@"FALSE"]];
     
-    for (int i = 0; i < [[properties allKeys] count]; i++) {
-        if ([properties objectForKey:[[properties allKeys] objectAtIndex:i]] != [NSNull null]) {
-            [appendContents appendString:[NSString stringWithFormat:@"%@: \"%@\"\n" ,[[properties allKeys] objectAtIndex:i], [properties objectForKey:[[properties allKeys] objectAtIndex:i]]]];
-            
-        }
-        else {
-            [appendContents appendString:[NSString stringWithFormat:@"%@: \"%@\"\n" ,[[properties allKeys] objectAtIndex:i], @"null"]];
+    if (properties != nil) {
+        for (int i = 0; i < properties.allKeys.count; i++) {
+            if ([properties objectForKey:[[properties allKeys] objectAtIndex:i]] != [NSNull null]) {
+                [appendContents appendString:[NSString stringWithFormat:@"%@: \"%@\"\n" ,[[properties allKeys] objectAtIndex:i], [properties objectForKey:[[properties allKeys] objectAtIndex:i]]]];
+                
+            }
+            else {
+                [appendContents appendString:[NSString stringWithFormat:@"%@: \"%@\"\n" ,[[properties allKeys] objectAtIndex:i], @"null"]];
+
+            }
 
         }
-
-    }
     
+    }
+
     [appendContents appendString:@"\n"];
 
     NSError *writingError;
