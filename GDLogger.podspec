@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "GDLogger"
-  s.version      = "1.1"
+  s.version      = "1.1.1"
   s.summary      = "GDLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally"  
   s.description  = "GDLogger is a lightweight class for iOS versions 3.0 and above. It allows developers to log in app 'events' locally in mutilple, mutable txt files."
   s.homepage     = "https://github.com/northernspark/GDLogger"
